@@ -46,6 +46,25 @@ UIA := ComObject("{FF48DBA4-60EF-4201-AA87-54103EEF594E}"
 Walker := 0
 ComCall(14, UIA, "ptr*", &Walker)         ; get_ControlViewWalker
 
+; --- Tray menu: "Run at Windows startup" toggle -----------------------------
+; Right-click the tray icon to turn autostart on/off (creates/removes a shortcut
+; in the user's Startup folder that points to this script).
+STARTUP_LINK := A_Startup "\brave-middle-click-newtab.lnk"
+A_TrayMenu.Add()
+A_TrayMenu.Add("Run at Windows startup", ToggleStartup)
+if FileExist(STARTUP_LINK)
+    A_TrayMenu.Check("Run at Windows startup")
+
+ToggleStartup(name, *) {
+    if FileExist(STARTUP_LINK) {
+        FileDelete(STARTUP_LINK)
+        A_TrayMenu.Uncheck(name)
+    } else {
+        FileCreateShortcut(A_ScriptFullPath, STARTUP_LINK, A_ScriptDir)
+        A_TrayMenu.Check(name)
+    }
+}
+
 ^!d:: {
     global DebugOn
     DebugOn := !DebugOn

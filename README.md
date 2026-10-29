@@ -15,7 +15,7 @@ Middle-click on the empty area of Brave's tab strip to open a new tab, just like
 1. Install [AutoHotkey v2](https://www.autohotkey.com/).
 2. Download `brave-middle-click-newtab.ahk` and double-click it. A green "H" icon appears in the tray.
 
-To start it with Windows: press `Win+R`, run `shell:startup`, and put a shortcut to the `.ahk` file in that folder.
+To start it with Windows: right-click the green "H" tray icon and tick **Run at Windows startup**. (This creates a shortcut to the script in your Startup folder; untick it to remove it. Keep the `.ahk` file where it is, or tick the option again after moving it.)
 
 ## How it works
 
